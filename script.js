@@ -52,12 +52,21 @@ homeworkItems.forEach(function(item) {
 var button = document.getElementById('myButton');
 
         // Добавляем обработчик события "click" к кнопке
-        button.addEventListener('click', function() {
+button.addEventListener('click', function() {
             // Здесь вы можете указать ссылку, куда нужно перейти
             // Например:
             window.location.href = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ';
-        });
+});
 
+
+
+
+
+
+
+
+        
+        
 
 
 
