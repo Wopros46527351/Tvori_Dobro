@@ -203,10 +203,77 @@ footer {
 
 
 
+header {
+    background: linear-gradient(to bottom, #3498db, #ffffff); /* Градиент от синего к белому */
+    color: #000000; /* Цвет текста заголовка */
+    text-align: center; /* Выравнивание текста по центру */
+    padding: 20px; /* Отступы вокруг текста */
+  }
 
 
 
 
+
+
+
+
+
+  .container11{
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.container11 h1{
+    margin: 30px;
+}
+.counter11{
+    width: 30%;
+    display: flex;
+    justify-content: center;
+}
+#increment-btn, #decrement-btn, #reset{
+    height: 50px;
+    width: 120px;
+    padding: 0 40px 8px 40px;
+    border-radius: 10px;
+    font-size: 40px;
+    background-color: #2e8d46;
+    border: 2px solid #2e8d46;
+    color: white;
+    margin: 20px;
+    transition: background-color 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+#increment-btn:hover, #decrement-btn:hover, #reset:hover {
+    background-color: #1e662e; /* Change the background color on hover */
+}
+#reset{
+    font-size: 20px;
+}
+#counter-value{
+    height: 50px;
+    min-width: 120px;
+    border-radius: 10px;
+    background-color: rgba(255, 0, 0, 0.187);
+    margin-top: 20px;
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+*{
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+}
 
 
 
