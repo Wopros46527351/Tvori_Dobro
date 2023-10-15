@@ -99,7 +99,9 @@ function reset() {
         
 
 
-
+function go_on_2() {
+    window.location.href = "vvod.html";
+}
 
 
 
