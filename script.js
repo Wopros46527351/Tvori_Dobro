@@ -104,6 +104,10 @@ function go_on_2() {
 }
 
 
+function go_on_3() {
+    window.location.href = "scroll.html";
+}
+
 
 
 
