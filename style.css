@@ -1,309 +1,263 @@
 /* Общие стили */
 
-html{
-
-    width: 100%;
-    max-width: 100%;
-    overflow-x: hidden;
+html {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
-  body
-  {
-    height: calc(100vh - 44px); /* Установите желаемую высоту для отображения элементов */
-    overflow: auto; /* Добавьте полосу прокрутки, если контент выходит за пределы высоты */
+body {
+  height: calc(
+    100vh - 44px
+  ); /* Установите желаемую высоту для отображения элементов */
+  overflow: auto; /* Добавьте полосу прокрутки, если контент выходит за пределы высоты */
 
-    width: 100%;
-    max-width: 100%;
-    overflow-x: hidden;
-  }
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
 
 body {
-    font-family: Arial, sans-serif;
+  font-family: Arial, sans-serif;
 }
 
 /* Стили для header */
 header {
-    display: flex;
-    align-items: center;
-    justify-content:space-between;
-    padding: 0px 20px;
-    color: gray;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 20px;
+  color: gray;
 }
 
 #hogwarts-logo {
-    width: 200px;
-    height: 120px;
-    cursor: pointer;
+  width: 200px;
+  height: 120px;
+  cursor: pointer;
 }
 
 #homework-list {
-    display: flex;
-    align-items: center;
-    margin: 0;
-    padding: 50px;
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 50px;
 }
 
 .homework {
-    margin-right: 20px;
-    cursor: pointer;
-    transition: color 0.3s;
+  margin-right: 20px;
+  cursor: pointer;
+  transition: color 0.3s;
 }
 
 .homework:hover {
-    color: blue;
+  color: blue;
 }
 
 .success {
-    background-color: #4fbe53;
-    color: rgb(0, 0, 0);
-    border-radius: 5px;
-    margin: 5px 0;
-    max-width: 700px; /* Максимальная ширина */
-    max-height: 100px; /* Максимальная высота */
-    list-style: none;
+  background-color: #4fbe53;
+  color: rgb(0, 0, 0);
+  border-radius: 5px;
+  margin: 5px 0;
+  max-width: 700px; /* Максимальная ширина */
+  max-height: 100px; /* Максимальная высота */
+  list-style: none;
 }
 .warning {
-    background-color: #fffb09;
-    color: rgb(0, 0, 0);
-    border-radius: 5px;
+  background-color: #fffb09;
+  color: rgb(0, 0, 0);
+  border-radius: 5px;
 
-    margin: 5px 0;
-    max-width: 700px; /* Максимальная ширина */
-    max-height: 100px; /* Максимальная высота */
-    list-style: none;
+  margin: 5px 0;
+  max-width: 700px; /* Максимальная ширина */
+  max-height: 100px; /* Максимальная высота */
+  list-style: none;
 }
 .html {
-    background-color: #139724;
-    color: white;
-    padding: 5px 10px;
-    
-    border: 3px solid black;
-    max-height: 100px; /* Максимальная высота */
-    display: inline-block;
-    margin-right: 10px;
-    text-align: center;
-    width: 70px;
+  background-color: #139724;
+  color: white;
+  padding: 5px 10px;
+
+  border: 3px solid black;
+  max-height: 100px; /* Максимальная высота */
+  display: inline-block;
+  margin-right: 10px;
+  text-align: center;
+  width: 70px;
 }
 
 .css {
-    background-color: #3b38ff;
-    color: white;
-    padding: 5px 10px;
-    border: 3px solid black;
-    /*border-radius: 5px;*/
-    max-height: 100px; /* Максимальная высота */
-    display: inline-block;
-    margin-right: 10px;
-    text-align: center;
-    width: 70px;
+  background-color: #3b38ff;
+  color: white;
+  padding: 5px 10px;
+  border: 3px solid black;
+  /*border-radius: 5px;*/
+  max-height: 100px; /* Максимальная высота */
+  display: inline-block;
+  margin-right: 10px;
+  text-align: center;
+  width: 70px;
 }
 
 .js {
-    background-color: #ff7e15;
-    color: white;
-    padding: 5px 10px;
-    border: 3px solid black;
-    
-    max-height: 100px; /* Максимальная высота */
-    display: inline-block;
-    margin-right: 10px;
-    text-align: center;
-    width: 70px;
+  background-color: #ff7e15;
+  color: white;
+  padding: 5px 10px;
+  border: 3px solid black;
+
+  max-height: 100px; /* Максимальная высота */
+  display: inline-block;
+  margin-right: 10px;
+  text-align: center;
+  width: 70px;
 }
 
 .arrow {
-    margin-left: 35px;
+  margin-left: 35px;
 }
 
 .btn-primary {
-    margin-left: 35px;
+  margin-left: 35px;
 }
 
 .count {
-    margin-left: 35px;
+  margin-left: 35px;
 }
 
-#plus-btn{
-    border-radius: 50%;
-    width: 40px; /* Устанавливаем ширину кнопки */
-    height: 40px; /* Устанавливаем высоту кнопки */
-    line-height: 20px;
-    vertical-align: middle;
-    text-align: center; /* Центрируем текст в кнопке горизонтально */
-    font-size: 20px; /* Устанавливаем размер шрифта */
-    margin-left: 35px;
-    
+#plus-btn {
+  border-radius: 50%;
+  width: 40px; /* Устанавливаем ширину кнопки */
+  height: 40px; /* Устанавливаем высоту кнопки */
+  line-height: 20px;
+  vertical-align: middle;
+  text-align: center; /* Центрируем текст в кнопке горизонтально */
+  font-size: 20px; /* Устанавливаем размер шрифта */
+  margin-left: 35px;
 }
 
-#minus-btn{
-    padding: 10px;
+#minus-btn {
+  padding: 10px;
 
-    border-radius: 50%;
-    width: 40px; /* Устанавливаем ширину кнопки */
-    height: 40px; /* Устанавливаем высоту кнопки */
-    line-height: 20px;
-    text-align: center; /* Центрируем текст в кнопке горизонтально */
-    font-size: 20px; /* Устанавливаем размер шрифта */
+  border-radius: 50%;
+  width: 40px; /* Устанавливаем ширину кнопки */
+  height: 40px; /* Устанавливаем высоту кнопки */
+  line-height: 20px;
+  text-align: center; /* Центрируем текст в кнопке горизонтально */
+  font-size: 20px; /* Устанавливаем размер шрифта */
 }
-
-
-
-
-
-
 
 /* Стили для подвала */
 footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background-color: #333;
-    color: #fff;
-    padding: 10px 0;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #333;
+  color: #fff;
+  padding: 10px 0;
 }
 
 .container {
-    
-    max-width: 1200px;
-    margin: 0 0;
+  max-width: 1200px;
+  margin: 0 0;
 }
 
 .footer-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .footer-groups a {
-    color: #fff;
-    text-decoration: none;
-    margin-right: 20px;
+  color: #fff;
+  text-decoration: none;
+  margin-right: 20px;
 }
 
 .footer-phone {
-    color: #fff;
+  color: #fff;
 }
 
 .max-width-100 {
-    width: 400px; /* Ширина картинки */
-    height: 400px; /* Высота картинки */
-    
+  width: 400px; /* Ширина картинки */
+  height: 400px; /* Высота картинки */
 }
 
 .text-center {
-    text-align: center;
+  text-align: center;
 }
-
 
 .image-container {
-    width: 95%; /* Ширина контейнера, можете изменить на необходимую ширину */
-    overflow: hidden; /* Скрыть часть изображения, которая не помещается в контейнер */
+  width: 95%; /* Ширина контейнера, можете изменить на необходимую ширину */
+  overflow: hidden; /* Скрыть часть изображения, которая не помещается в контейнер */
 }
-
-
 
 header {
-    background: linear-gradient(to bottom, #3498db, #ffffff); /* Градиент от синего к белому */
-    color: #000000; /* Цвет текста заголовка */
-    text-align: center; /* Выравнивание текста по центру */
-    padding: 20px; /* Отступы вокруг текста */
-  }
-
-
-
-
-
-
-
-
-
-  .container11{
-    height: 100vh;
-    width: 100vw;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-.container11 h1{
-    margin: 30px;
-}
-.counter11{
-    width: 30%;
-    display: flex;
-    justify-content: center;
-}
-#increment-btn, #decrement-btn, #reset{
-    height: 50px;
-    width: 120px;
-    padding: 0 40px 8px 40px;
-    border-radius: 10px;
-    font-size: 40px;
-    background-color: #2e8d46;
-    border: 2px solid #2e8d46;
-    color: white;
-    margin: 20px;
-    transition: background-color 0.3s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  background: linear-gradient(
+    to bottom,
+    #3498db,
+    #ffffff
+  ); /* Градиент от синего к белому */
+  color: #000000; /* Цвет текста заголовка */
+  text-align: center; /* Выравнивание текста по центру */
+  padding: 20px; /* Отступы вокруг текста */
 }
 
-
-#increment-btn:hover, #decrement-btn:hover, #reset:hover {
-    background-color: #1e662e; /* Change the background color on hover */
+.container11 {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
-#reset{
-    font-size: 20px;
+.container11 h1 {
+  margin: 30px;
 }
-#counter-value{
-    height: 50px;
-    min-width: 120px;
-    border-radius: 10px;
-    background-color: rgba(255, 0, 0, 0.187);
-    margin-top: 20px;
-    font-size: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.counter11 {
+  width: 30%;
+  display: flex;
+  justify-content: center;
+}
+#increment-btn,
+#decrement-btn,
+#reset {
+  height: 50px;
+  width: 120px;
+  padding: 0 40px 8px 40px;
+  border-radius: 10px;
+  font-size: 40px;
+  background-color: #2e8d46;
+  border: 2px solid #2e8d46;
+  color: white;
+  margin: 20px;
+  transition: background-color 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-*{
-    box-sizing: border-box;
-    margin: 0px;
-    padding: 0px;
+#increment-btn:hover,
+#decrement-btn:hover,
+#reset:hover {
+  background-color: #1e662e; /* Change the background color on hover */
+}
+#reset {
+  font-size: 20px;
+}
+#counter-value {
+  height: 50px;
+  min-width: 120px;
+  border-radius: 10px;
+  background-color: rgba(255, 0, 0, 0.187);
+  margin-top: 20px;
+  font-size: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  
-
-
-
-
+* {
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+}

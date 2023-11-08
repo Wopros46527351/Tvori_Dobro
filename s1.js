@@ -17,24 +17,19 @@ if (localStorage.getItem("pageReloaded") !== "true") {
 // Ждем 5 секунд
 
 document.addEventListener("DOMContentLoaded", function () {
-    // Проверяем, авторизован ли пользователь
-    const loggedIn = localStorage.getItem("loggedIn");
-    if (!loggedIn || loggedIn !== "true") {
+  // Проверяем, авторизован ли пользователь
+  const loggedIn = localStorage.getItem("loggedIn");
+  if (!loggedIn || loggedIn !== "true") {
     // Если пользователь не авторизован, показываем алерт и перенаправляем его на страницу login.html
     alert("Пользователь не авторизован.");
     window.location.href = "vvod.html";
-    }
-    setTimeout(function() {
-        document.querySelector(".loader").style.display = "none";
-        document.querySelector(".content").classList.remove("hidden");
-    }, 5000);
-    });
-    
-
+  }
+  setTimeout(function () {
+    document.querySelector(".loader").style.display = "none";
+    document.querySelector(".content").classList.remove("hidden");
+  }, 5000);
+});
 
 function go_on_1() {
-    window.location.href = "index.html";
-  }
-
-
-  
+  window.location.href = "index.html";
+}

@@ -1,136 +1,145 @@
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
+  font-family: Arial, sans-serif;
+  margin: 0;
 }
 
-
-html, body {
+html,
+body {
   width: 100%;
-  height:100%;
+  height: 100%;
 }
 
 body {
-    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-    background-size: 400% 400%;
-    animation: gradient 15s ease infinite;
-    background-attachment: fixed;
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+  background-attachment: fixed;
 }
 
 @keyframes gradient {
-    0% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
-    }
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 .post-container {
-    width: 80%;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    max-height: 400px;
-    overflow-y: scroll;
+  width: 80%;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  max-height: 400px;
+  overflow-y: scroll;
 }
 
 .post-list {
-    padding: 0;
-    list-style: none;
+  padding: 0;
+  list-style: none;
 }
-
 
 /* Добавьте следующие стили в файл styles.css */
 
 /* Добавьте следующие стили в файл styles.css */
 
 .post {
-    background: rgba(205, 205, 205, 0.75);
-    display: flex;
-    margin: 10px 10%;
-    align-items: flex-start;
-    border: 1px solid #ccc;
-    border-radius: 10px; /* Закругление поста */
-    padding: 20px; /* Отступы внутри поста */
+  background: rgba(205, 205, 205, 0.75);
+  display: flex;
+  margin: 10px 10%;
+  align-items: flex-start;
+  border: 1px solid #ccc;
+  border-radius: 10px; /* Закругление поста */
+  padding: 20px; /* Отступы внутри поста */
 }
 
 .avatar {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    overflow: hidden;
-    margin-right: 20px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 20px;
+  transition: transform 1s cubic-bezier(0.6, -0.28, 0.735, 0.045); /* Используем кривую Безье для плавного вращения */
 }
 
 .avatar img {
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
 }
 
 .post-content {
-    flex: 1;
+  flex: 1;
 }
 
 #loading-animation {
-    display: flex;
-    text-align: center;
-    justify-content: center;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  padding: 2% 0px;
 }
 
 #end-of-posts {
-    display: none;
-    text-align: center; /* Выравнивание текста по центру по горизонтали */
-    
+  display: none;
+  text-align: center; /* Выравнивание текста по центру по горизонтали */
 }
 
 /* Другие стили для контента записи */
 
-
 .loader {
-    --loader-size: 50px;
-    --loader-border-size: 4px;
-    --loader-border-color: white;
-    width: var(--loader-size);
-    height: var(--loader-size);
-    border: var(--loader-border-size) solid var(--loader-border-color);
-    border-top-color: transparent;
-    border-right-color: transparent;
-    border-bottom-color: transparent;
-    background-color: transparent;
-    border-radius: 50%;
-    position: relative;
-    animation: rotateX 1s infinite linear;
+  --loader-size: 50px;
+  --loader-border-size: 4px;
+  --loader-border-color: white;
+  width: var(--loader-size);
+  height: var(--loader-size);
+  border: var(--loader-border-size) solid var(--loader-border-color);
+  border-top-color: transparent;
+  border-right-color: transparent;
+  border-bottom-color: transparent;
+  background-color: transparent;
+  border-radius: 50%;
+  position: relative;
+  animation: rotateX 1s infinite linear;
+}
+
+.loader::before {
+  content: "";
+  border: var(--loader-border-size) solid var(--loader-border-color);
+  border-top-color: transparent;
+  border-left-color: transparent;
+  border-bottom-color: transparent;
+  background-color: transparent;
+  border-radius: 50%;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  right: 2px;
+  bottom: 2px;
+  animation: rotateX 0.5s infinite linear reverse;
+}
+
+@keyframes rotateX {
+  from {
+    transform: rotateZ(0deg);
   }
-  
-  .loader::before {
-    content:"";
-    border: var(--loader-border-size) solid var(--loader-border-color);
-    border-top-color: transparent;
-    border-left-color: transparent;
-    border-bottom-color: transparent;
-    background-color: transparent;
-    border-radius: 50%;
-    position: absolute;
-    top: 2px;
-    left: 2px;
-    right: 2px;
-    bottom: 2px;
-    animation: rotateX 0.5s infinite linear reverse;
+  to {
+    transform: rotateZ(360deg);
   }
-          
-  @keyframes rotateX {
-    from {
-      transform: rotateZ(0deg);
-    }
-    to {
-      transform: rotateZ(360deg);
-    }
+}
+
+/* Анимация вращения */
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
   }
-  
+  to {
+    transform: rotate(360deg);
+  }
+}
 
-
-
-
+/* Применение анимации к иконке при наведении */
+.avatar:hover {
+  transform: rotate(360deg); /* Вращение на 360 градусов */
+}
