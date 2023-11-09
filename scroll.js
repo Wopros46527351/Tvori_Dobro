@@ -19,6 +19,20 @@ document.addEventListener("DOMContentLoaded", function () {
   let loading = false;
   let endOfPostsReached = false;
 
+  const options = {
+    root: null,
+    rootMargin: "0px",
+    threshold: 0.99,
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        loadPosts();
+      }
+    });
+  }, options);
+
   function loadPosts() {
     if (loading || endOfPostsReached) return;
     loading = true;
@@ -34,19 +48,41 @@ document.addEventListener("DOMContentLoaded", function () {
         const endIndex = startIndex + perPage;
         const currentPosts = posts.slice(startIndex, endIndex);
 
-        currentPosts.forEach(function (post) {
-          const postElement = `
-                <div class="post">
-                <div class="avatar" title="Номер записи: ${post.id} \nНомер пользователя: ${post.userId}">
-                    <img src="${post.avatar}" alt="Аватар">
-                </div>
-                <div class="post-content">
-                    <h2>${post.title}</h2>
-                    <p>${post.body}</p>
-                </div>
-                </div>
-            `;
-          postsContainer.innerHTML += postElement;
+        currentPosts.forEach(function (post, index) {
+          const postElement = document.createElement("div");
+          postElement.classList.add("post");
+          postElement.dataset.postId = post.id;
+
+          const avatarElement = document.createElement("div");
+          avatarElement.classList.add("avatar");
+          avatarElement.title = `Номер записи: ${post.id} \nНомер пользователя: ${post.userId}`;
+          avatarElement.innerHTML = `<img src="${post.avatar}" alt="Аватар">`;
+
+          const contentElement = document.createElement("div");
+          contentElement.classList.add("post-content");
+          contentElement.innerHTML = `
+                  
+                      <h2>${post.title}</h2>
+                      <p class="post-body">${post.body}</p>
+                      
+                  `;
+
+          const contentElement2 = document.createElement("div");
+          contentElement2.classList.add("button-container");
+          contentElement2.innerHTML = `<button class="hide-button">Скрыть пост</button>`;
+          postElement.appendChild(avatarElement);
+          postElement.appendChild(contentElement);
+          postElement.appendChild(contentElement2);
+          postsContainer.appendChild(postElement);
+
+          // Если это последний загруженный пост, привяжем Intersection Observer
+          if (index === currentPosts.length - 1) {
+            observer.observe(document.querySelector(".post:last-child"));
+          }
+
+          // Добавим обработчик события для кнопки "Скрыть пост"
+          const hideButton = postElement.querySelector(".hide-button");
+          hideButton.addEventListener("click", () => hidePost(postElement));
         });
 
         page++;
@@ -61,15 +97,10 @@ document.addEventListener("DOMContentLoaded", function () {
       });
   }
 
-  function checkScroll() {
-    if (
-      window.scrollY + window.innerHeight >=
-      document.documentElement.scrollHeight - 100
-    ) {
-      loadPosts();
-    }
+  function hidePost(postElement) {
+    // Удалите пост из DOM
+    postsContainer.removeChild(postElement);
   }
 
-  window.addEventListener("scroll", checkScroll);
-  loadPosts();
+  loadPosts(); // Загрузка первых 10 постов
 });

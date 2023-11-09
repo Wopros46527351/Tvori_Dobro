@@ -34,6 +34,7 @@ body {
   padding: 20px;
   border: 1px solid #ccc;
   max-height: 400px;
+  max-width: 600px;
   overflow-y: scroll;
 }
 
@@ -142,4 +143,57 @@ body {
 /* Применение анимации к иконке при наведении */
 .avatar:hover {
   transform: rotate(360deg); /* Вращение на 360 градусов */
+}
+
+.post-body {
+  max-width: 70%; /* Установите желаемую максимальную ширину */
+  overflow: hidden;
+  text-overflow: ellipsis; /* Если текст превышает максимальную ширину, отображайте многоточие */
+  text-align: justify;
+}
+
+/* 
+.delete-button {
+  background-color: #ff4d4d;
+  color: #fff;
+  padding: 5px 10px;
+  border: none;
+  cursor: pointer;
+}*/
+
+.hide-button {
+  width: 120px;
+  height: 120px;
+  left: 10%;
+
+  border-radius: 6px;
+  background: #337ab7;
+  margin: 25%;
+  left: -40%;
+  position: relative;
+  display: flex;
+  z-index: 200;
+  text-indent: -9999px;
+  cursor: pointer;
+}
+.hide-button:before,
+.hide-button:after {
+  content: "";
+  width: 80%;
+  height: 6px;
+  background: #bfe2ff;
+  position: absolute;
+  top: 48%;
+  left: 10%;
+  transform: rotate(45deg);
+  transition: all 0.3s ease-out;
+}
+.hide-button:after {
+  transform: rotate(-45deg);
+  transition: all 0.3s ease-out;
+}
+.hide-button:hover:before,
+.hide-button:hover:after {
+  transform: rotate(180deg);
+  background: #fff;
 }
