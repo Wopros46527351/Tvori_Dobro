@@ -69,7 +69,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
           const contentElement2 = document.createElement("div");
           contentElement2.classList.add("button-container");
-          contentElement2.innerHTML = `<button class="hide-button">Скрыть пост</button>`;
+          contentElement2.innerHTML = `<button  class="hide-button">Скрыть пост</button>`;
           postElement.appendChild(avatarElement);
           postElement.appendChild(contentElement);
           postElement.appendChild(contentElement2);
@@ -98,8 +98,43 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function hidePost(postElement) {
-    // Удалите пост из DOM
-    postsContainer.removeChild(postElement);
+    postElement.style.transition = "transform 0.5s ease, opacity 0.5s";
+    postElement.style.transform = "translateY(-100%)";
+    postElement.style.opacity = "0";
+
+    const animationDuration = 1000;
+    const height1 = postElement.offsetHeight;
+    let animationsCount = 0;
+    const allPosts = Array.from(document.querySelectorAll(".post"));
+    const index = allPosts.indexOf(postElement);
+
+    for (let i = index + 1; i < allPosts.length; i++) {
+      if (allPosts[i].style.display != "none") {
+        allPosts[i].style.transition = `transform 0.5s ease ${i * 0.1}s`;
+        allPosts[i].style.transform = `translateY(-${height1 + 10}px)`;
+        animationsCount++;
+
+        // Добавляем событие окончания анимации для каждого элемента
+        allPosts[i].addEventListener("transitionend", () => {
+          animationsCount--;
+
+          // Проверяем, все ли анимации завершились
+          if (animationsCount === 0) {
+            // Все анимации завершены
+            postElement.style.display = "none";
+
+            for (let i1 = index + 1; i1 < allPosts.length; i1++) {
+              if (allPosts[i1].style.display != "none") {
+                allPosts[i1].style.transition = `transform 0s ease 0s`;
+                allPosts[i1].style.transform = "translateY(0)";
+              }
+            }
+            console.log("Все анимации завершены.");
+            // Здесь вы можете запустить любой код, который должен выполниться после завершения всех анимаций
+          }
+        });
+      }
+    }
   }
 
   loadPosts(); // Загрузка первых 10 постов
