@@ -34,22 +34,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }, options);
 
-  const buttons = document.querySelectorAll("button");
-
-  // Функция для блокировки кнопок
-  function disableButtons() {
-    buttons.forEach((button) => {
-      button.disabled = true; // Отключаем каждую кнопку
-    });
-  }
-
-  // Функция для разблокировки кнопок
-  function enableButtons() {
-    buttons.forEach((button) => {
-      button.disabled = false; // Включаем каждую кнопку
-    });
-  }
-
   function loadPosts() {
     if (loading || endOfPostsReached) return;
 
@@ -118,7 +102,7 @@ document.addEventListener("DOMContentLoaded", function () {
   function hidePost(postElement) {
     if (loading2) return;
     loading2 = true;
-    disableButtons();
+
     postElement.style.transition = "transform 0.5s ease, opacity 0.5s";
     postElement.style.transform = "translateY(-100%)";
     postElement.style.opacity = "0";
@@ -150,7 +134,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 allPosts[i1].style.transform = "translateY(0)";
               }
             }
-            enableButtons();
+
             loading2 = false;
             console.log("Все анимации завершены.");
             // Здесь вы можете запустить любой код, который должен выполниться после завершения всех анимаций
