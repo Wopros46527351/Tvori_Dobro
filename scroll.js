@@ -113,9 +113,25 @@ document.addEventListener("DOMContentLoaded", function () {
     const allPosts = Array.from(document.querySelectorAll(".post"));
     const index = allPosts.indexOf(postElement);
 
+    let cc = 0;
+
     for (let i = index + 1; i < allPosts.length; i++) {
       if (allPosts[i].style.display != "none") {
-        allPosts[i].style.transition = `transform 0.5s ease ${i * 0.1}s`;
+        cc++;
+      }
+    }
+
+    if (cc == 0) {
+      postElement.addEventListener("transitionend", () => {
+        postElement.style.display = "none";
+        loading2 = false;
+        return;
+      });
+    }
+
+    for (let i = index + 1; i < allPosts.length; i++) {
+      if (allPosts[i].style.display != "none") {
+        allPosts[i].style.transition = `transform 0.5s ease 0.1s`;
         allPosts[i].style.transform = `translateY(-${height1 + 10}px)`;
         animationsCount++;
 
