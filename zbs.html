@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" type="image/x-icon" href="k3.ico" />
+  <title>Менеджер заказов</title>
+  
+  <style>
+
+
+
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+    .w1{
+        display: flex;
+  align-items: center;
+  justify-content: center;
+    }
+
+    th {
+      background-color: #52e750;
+    }
+
+    @keyframes colorChange {
+    0% {
+        background-color: #ffcccc; /* Начальный цвет */
+    }
+    50% {
+        background-color: #ff9999; /* Средний цвет */
+    }
+    100% {
+        background-color: #ffcccc; /* Конечный цвет */
+    }
+}
+
+tr {
+    animation: colorChange 3s infinite; /* 3s - время одного цикла анимации, infinite - бесконечное повторение */
+}
+
+    button {
+      margin-top: 10px;
+      padding: 8px;
+      cursor: pointer;
+    }
+    input{
+        margin-bottom: 15px;
+    }
+    input[type="text"] {
+      padding: 5px;
+      
+    }
+
+    .edit-form {
+      display: none;
+    }
+
+    .error-message {
+      color: red;
+    }
+
+    .image-container {
+        display: flex;
+  align-items: center;
+  justify-content: space-between;
+        }
+
+        img {
+            max-width: 20%;
+            height: auto;
+            margin-bottom: 15px;
+        }
+  </style>
+</head>
+<body>
+
+
+  
+<div class="image-container">
+    <img src="for_ls.gif" alt="Тудым сюдым">
+    <h1>Менеджер заказов</h1>
+    <img src="vvp.gif" alt="Тудым сюдым">
+</div>
+
+<button onclick="showAddOrderForm()">Добавить заказ</button>
+<button onclick="showHistory()">История заказов</button>
+<input type="text" id="searchInput" placeholder="Поиск..." oninput="searchOrders()">
+
+<div id="addOrderForm" style="display: none;">
+    <h2>Добавить заказ</h2>
+    <form onsubmit="addOrder(); return false;">
+      <label for="cardNumber">Номер телефона: +7</label>
+      <input type="text" id="cardNumber">
+      <span class="error-message" id="cardNumberError"></span>
+      <br>
+      <label for="orderName">Заказ:</label>
+      <input type="text" id="orderName">
+      <span class="error-message" id="orderNameError"></span>
+      <br>
+      <label for="amount">Сумма:</label>
+      <input type="text" id="amount">
+      <span class="error-message" id="amountError"></span>
+      <br>
+      <label for="client">Клиент:</label>
+      <input type="text" id="client">
+      <span class="error-message" id="clientError"></span>
+      <br>
+      <label for="time">Время:</label>
+          <input type="time" id="time" required>
+          <span class="error-message" id="timeError"></span>
+          
+      <br>
+      <label for="comment">Комментарий:</label>
+      <input type="text" id="comment">
+      <br>
+      <button type="submit">Сохранить</button>
+    </form>
+  </div>
+  
+  <div id="editForm" class="edit-form">
+    <h2>Изменить заказ</h2>
+    <form onsubmit="saveEditedOrder(); return false;">
+      <label for="editCardNumber">Номер телефона: +7</label>
+      <input type="text" id="editCardNumber">
+      <span class="error-message" id="editCardNumberError"></span>
+      <br>
+      <label for="editOrderName">Заказ:</label>
+      <input type="text" id="editOrderName">
+      <span class="error-message" id="editOrderNameError"></span>
+      <br>
+      <label for="editAmount">Сумма:</label>
+      <input type="text" id="editAmount">
+      <span class="error-message" id="editAmountError"></span>
+      <br>
+      <label for="editClient">Клиент:</label>
+      <input type="text" id="editClient">
+      <span class="error-message" id="editClientError"></span>
+      <br>
+      <label for="editTime">Время:</label>
+          <input type="time" id="editTime" required>
+          <span class="error-message" id="editTimeError"></span>
+          
+      <br>
+      <label for="editComment">Комментарий:</label>
+      <input type="text" id="editComment">
+      <br>
+      <button type="submit">Сохранить изменения</button>
+    </form>
+  </div>
+
+
+
+
+
+<table id="ordersTable">
+    <h1 class="w1">Текущие заказы</h1>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Номер телефона</th>
+      <th>Заказ</th>
+      <th>Сумма</th>
+      <th>Клиент</th>
+      <th>Время</th>
+      <th>Комментарий</th>
+      <th>Действия</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- Здесь будут отображаться заказы -->
+  </tbody>
+</table>
+
+<table id="historyTable" style="display: none;">
+    <h1 class="w1" id="hs"  style="display: none;">Закрытые заказы</h1>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Номер телефона</th>
+      <th>Заказ</th>
+      <th>Сумма</th>
+      <th>Клиент</th>
+      <th>Время</th>
+      <th>Комментарий</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- Здесь будут отображаться закрытые заказы -->
+  </tbody>
+</table>
+
+
+
+
+
+
+<script>
+    const orders = [];
+    const history = [];
+    let editedOrderIndex = -1;
+
+
+
+    let isEditForm = false; // Флаг, указывающий на редактирование
+
+
+
+  function disableButtonsExceptSave() {
+  // Отключаем все кнопки, кроме кнопки "Сохранить"
+  const buttons = document.querySelectorAll('button');
+  buttons.forEach(button => {
+    if ((button.textContent !== 'Сохранить')&&( button.textContent !=='Сохранить изменения')) {
+      button.disabled = true;
+    }
+  });
+}
+function enableAllButtons() {
+  // Включаем все кнопки
+  const buttons = document.querySelectorAll('button');
+  buttons.forEach(button => {
+    button.disabled = false;
+  });
+}
+
+  
+  
+    let nextOrderId = 2; // Переменная для увеличения ID только для новых заказов
+  
+    function renderOrders(filteredOrders = orders) {
+      const tableBody = document.querySelector('#ordersTable tbody');
+      tableBody.innerHTML = '';
+  
+      for (const [index, order] of filteredOrders.entries()) {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td>${order.orderId}</td>
+          <td>${order.cardNumber}</td>
+          <td>${order.orderName}</td>
+          <td>${order.amount}</td>
+          <td>${order.client}</td>
+          <td>${order.time}</td>
+          <td>${order.comment}</td>
+          <td>
+            <button onclick="renameOrder('${order.orderName}')">Переименовать</button>
+            <button onclick="deleteOrder('${order.orderName}')">Удалить</button>
+            <button onclick="closeOrder('${order.orderName}')">Закрыть</button>
+            <button onclick="showEditForm(${index})">Изменить</button>
+          </td>
+        `;
+        tableBody.appendChild(row);
+      }
+    }
+  
+    function renderHistory() {
+      const historyTableBody = document.querySelector('#historyTable tbody');
+      historyTableBody.innerHTML = '';
+  
+      for (const order of history) {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td>${order.orderId}</td>
+          <td>${order.cardNumber}</td>
+          <td>${order.orderName}</td>
+          <td>${order.amount}</td>
+          <td>${order.client}</td>
+          <td>${order.time}</td>
+          <td>${order.comment}</td>
+        `;
+        historyTableBody.appendChild(row);
+      }
+    }
+  
+    function showAddOrderForm() {
+        disableButtonsExceptSave();
+      document.querySelector('#addOrderForm').style.display = 'block';
+    }
+  
+    function addOrder() {
+      const cardNumber = document.querySelector('#cardNumber').value;
+      const orderName = document.querySelector('#orderName').value;
+      const amount = document.querySelector('#amount').value;
+      const client = document.querySelector('#client').value;
+      const time = document.querySelector('#time').value;
+      const comment = document.querySelector('#comment').value;
+  
+      if (validateOrder(cardNumber, orderName, amount, client, time)) {
+      const newOrder = { orderId: nextOrderId, cardNumber, orderName, amount, client, time, comment };
+      orders.push(newOrder);
+      renderOrders();
+      resetAddOrderForm();
+      nextOrderId++; // Увеличение ID для следующего нового заказа
+      }
+    }
+  
+    function resetAddOrderForm() {
+      document.querySelector('#cardNumber').value = '';
+      document.querySelector('#orderName').value = '';
+      document.querySelector('#amount').value = '';
+      document.querySelector('#client').value = '';
+      document.querySelector('#time').value = '';
+      document.querySelector('#comment').value = '';
+      document.querySelector('#addOrderForm').style.display = 'none';
+      enableAllButtons();
+      clearErrorMessages();
+    }
+  
+    function validateOrder(cardNumber, orderName, amount, client, time, isEditForm = false) {
+    clearErrorMessages();
+  
+    
+    const amountRegex = /^\d+$/;
+    const clientRegex = /^[a-zA-Zа-яА-Я\s]+$/;
+    const timeRegex = /^([01]?[0-9]|2[0-3]):[0-5][0-9]$/;
+  
+    let isValid = true;
+  
+    const phoneNumberRegex = /^\d{10}$/; // Пример регулярного выражения для номера телефона
+  
+  if (!phoneNumberRegex.test(cardNumber)) {
+    displayErrorMessage(isEditForm ? 'editCardNumberError' : 'cardNumberError', 'Номер телефона должен содержать ровно 10 цифр.');
+    isValid = false;
+  }
+  
+    if (!amountRegex.test(amount)) {
+      displayErrorMessage(isEditForm ? 'editAmountError' : 'amountError', 'Сумма должна быть числом.');
+      isValid = false;
+    }
+  
+    if (!clientRegex.test(client)) {
+      displayErrorMessage(isEditForm ? 'editClientError' : 'clientError', 'Имя клиента должно содержать только буквы.');
+      isValid = false;
+    }
+  
+    if (!timeRegex.test(time)) {
+      displayErrorMessage(isEditForm ? 'editTimeError' : 'timeError', 'Введите время в формате HH:mm.');
+      isValid = false;
+    }
+  
+    return isValid;
+  }
+  
+  
+    function displayErrorMessage(elementId, message) {
+      const errorMessageElement = document.querySelector(`#${elementId}`);
+      errorMessageElement.textContent = message;
+    }
+  
+    function clearErrorMessages() {
+      const errorElements = document.querySelectorAll('.error-message');
+      errorElements.forEach(element => element.textContent = '');
+    }
+  
+    function searchOrders() {
+      const searchInput = document.querySelector('#searchInput').value.toLowerCase();
+      const filteredOrders = orders.filter(order =>
+        order.cardNumber.toLowerCase().includes(searchInput) ||
+        order.orderName.toLowerCase().includes(searchInput) ||
+        order.client.toLowerCase().includes(searchInput)
+      );
+      renderOrders(filteredOrders);
+    }
+  
+    function renameOrder(orderName) {
+      const newOrderName = prompt('Введите новое имя заказа:');
+      const order = orders.find(order => order.orderName === orderName);
+      if (order && newOrderName) {
+        order.orderName = newOrderName;
+        renderOrders();
+      }
+      enableAllButtons();
+    }
+  
+    function deleteOrder(orderName) {
+      const index = orders.findIndex(order => order.orderName === orderName);
+      if (index !== -1) {
+        orders.splice(index, 1);
+        renderOrders();
+        nextOrderId--;
+      }
+    }
+  
+    function closeOrder(orderName) {
+      const orderIndex = orders.findIndex(order => order.orderName === orderName);
+      if (orderIndex !== -1) {
+        const closedOrder = orders.splice(orderIndex, 1)[0];
+        history.push(closedOrder);
+        renderOrders();
+        renderHistory();
+      }
+    }
+  
+    function showEditForm(index) {
+        disableButtonsExceptSave();
+      const order = orders[index];
+      document.querySelector('#editCardNumber').value = order.cardNumber;
+      document.querySelector('#editOrderName').value = order.orderName;
+      document.querySelector('#editAmount').value = order.amount;
+      document.querySelector('#editClient').value = order.client;
+      document.querySelector('#editTime').value = order.time;
+      document.querySelector('#editComment').value = order.comment;
+      editedOrderIndex = index;
+      document.querySelector('#editForm').style.display = 'block';
+    }
+  
+    function saveEditedOrder() {
+      if (editedOrderIndex !== -1) {
+        const order = orders[editedOrderIndex];
+        order.cardNumber = document.querySelector('#editCardNumber').value;
+        order.orderName = document.querySelector('#editOrderName').value;
+        order.amount = document.querySelector('#editAmount').value;
+        order.client = document.querySelector('#editClient').value;
+        order.time = document.querySelector('#editTime').value;
+        order.comment = document.querySelector('#editComment').value;
+  
+        if (validateOrder(order.cardNumber, order.orderName, order.amount, order.client, order.time, true)) {
+          renderOrders();
+          document.querySelector('#editForm').style.display = 'none';
+          enableAllButtons();
+          editedOrderIndex = -1;
+        }
+      }
+    }
+  
+    function showHistory() {
+      const historyTable = document.querySelector('#historyTable');
+      const h2 = document.querySelector('#hs');
+      if (historyTable.style.display === 'none') {
+        historyTable.style.display = 'table';
+        h2.style.display='flex';
+      } else {
+        historyTable.style.display = 'none';
+        h2.style.display='none';
+      }
+    }
+  
+    // Пример начальных данных
+    orders.push({
+      orderId: '1',
+      cardNumber: '0123456789',
+      orderName: 'Заказ №1',
+      amount: '1000',
+      client: 'Иван Иванов',
+      time: '12:00',
+      comment: 'Без комментариев'
+    });
+  
+    renderOrders();
+  </script>
+
+</body>
+</html>
